@@ -112,9 +112,9 @@ exports.handle = (client) => {
     classifications: {
       // map inbound message classifications to names of streams
     },
-    autoResponses: {
-      // configure responses to be automatically sent as predicted by the machine learning model
-    },
+    //autoResponses: {
+    //  // configure responses to be automatically sent as predicted by the machine learning model
+    //},
     streams: {
       main: 'getWeather',
       hi: [sayHello],
