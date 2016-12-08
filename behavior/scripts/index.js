@@ -34,6 +34,12 @@ exports.handle = (client) => {
     }
   })
 
+  const handleEvent = function (eventType, payload) {
+      client.addTextResponse('Received event of type: ' + eventType)
+      client.addTextResponse('Event msg: ' + payload)
+      client.done()
+  }
+
   const collectCity = client.createStep({
       satisfied() {
           return Boolean(client.getConversationState().weatherCity)
@@ -114,7 +120,12 @@ exports.handle = (client) => {
     },
     //autoResponses: {
     //  // configure responses to be automatically sent as predicted by the machine learning model
-    //},
+      //},
+    eventHandlers: {
+        // '*' Acts as a catch-all and will map all events not included in this
+        // object to the assigned function
+        '*': handleEvent,
+    },
     streams: {
       main: 'getWeather',
       hi: [sayHello],
